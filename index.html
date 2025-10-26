@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tort Urodzinowy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="darkness-overlay"></div>
+    <div class="lighter-cursor">
+      <svg width="40" height="80" viewBox="0 -5 40 85" xmlns="http://www.w3.org/2000/svg">
+        <!-- Lighter body -->
+        <rect x="10" y="20" width="20" height="50" rx="3" fill="url(#lighterGradient)" />
+        <rect x="10" y="20" width="20" height="5" fill="#555" />
+
+        <!-- Flame -->
+        <g class="lighter-flame">
+          <ellipse cx="20" cy="12" rx="8" ry="12" fill="url(#lighterFlameGradient)">
+            <animate attributeName="ry" values="12;14;11;13;12" dur="0.3s" repeatCount="indefinite" />
+            <animate attributeName="rx" values="8;7;9;7.5;8" dur="0.3s" repeatCount="indefinite" />
+          </ellipse>
+          <ellipse cx="20" cy="14" rx="5" ry="8" fill="url(#lighterFlameInner)">
+            <animate attributeName="ry" values="8;9;7;8.5;8" dur="0.3s" repeatCount="indefinite" />
+          </ellipse>
+        </g>
+
+        <defs>
+          <linearGradient id="lighterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color: #e74c3c; stop-opacity: 1" />
+            <stop offset="100%" style="stop-color: #c0392b; stop-opacity: 1" />
+          </linearGradient>
+          <linearGradient id="lighterFlameGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" style="stop-color: #ffd700; stop-opacity: 1" />
+            <stop offset="50%" style="stop-color: #ff8c00; stop-opacity: 1" />
+            <stop offset="100%" style="stop-color: #ff4500; stop-opacity: 0.9" />
+          </linearGradient>
+          <linearGradient id="lighterFlameInner" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" style="stop-color: #ffed4e; stop-opacity: 1" />
+            <stop offset="100%" style="stop-color: #ffaa00; stop-opacity: 0.8" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="container">
+      <div class="cake-wrapper">
+        <div class="cake-layer layer-1">
+          <svg class="frosting-svg" viewBox="0 0 300 35" preserveAspectRatio="none">
+            <path d="M 10,0 Q 0,0 0,10 L 0,18 Q 15,10 30,18 Q 45,26 60,18 Q 75,10 90,18 Q 105,26 120,18 Q 135,10 150,18 Q 165,26 180,18 Q 195,10 210,18 Q 225,26 240,18 Q 255,10 270,18 Q 285,26 300,18 L 300,10 Q 300,0 290,0 Z" fill="url(#frostingGradient)" />
+            <defs>
+              <linearGradient id="frostingGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color: #fff; stop-opacity: 1" />
+                <stop offset="100%" style="stop-color: #ffe8f0; stop-opacity: 1" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="cake-layer layer-2">
+          <svg class="frosting-svg" viewBox="0 0 300 35" preserveAspectRatio="none">
+            <path d="M 10,0 Q 0,0 0,10 L 0,16 Q 6,20 12,16 Q 24,8 36,16 Q 48,24 60,16 Q 72,8 84,16 Q 96,24 108,16 Q 120,8 132,16 Q 144,24 156,16 Q 168,8 180,16 Q 192,24 204,16 Q 216,8 228,16 Q 240,24 252,16 Q 264,8 276,16 Q 288,24 300,16 L 300,10 Q 300,0 290,0 Z" fill="url(#frostingGradient2)" />
+            <defs>
+              <linearGradient id="frostingGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color: #fff; stop-opacity: 1" />
+                <stop offset="100%" style="stop-color: #ffe8f0; stop-opacity: 1" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="cake-layer layer-3">
+          <svg class="frosting-svg" viewBox="0 0 300 35" preserveAspectRatio="none">
+            <path d="M 10,0 Q 0,0 0,10 L 0,20 Q 14,26 28,20 Q 45,12 62,20 Q 79,28 96,20 Q 113,12 130,20 Q 147,28 164,20 Q 181,12 198,20 Q 215,28 232,20 Q 249,12 266,20 Q 283,28 300,20 L 300,10 Q 300,0 290,0 Z" fill="url(#frostingGradient3)" />
+            <defs>
+              <linearGradient id="frostingGradient3" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color: #fff; stop-opacity: 1" />
+                <stop offset="100%" style="stop-color: #ffe8f0; stop-opacity: 1" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="cake-layer layer-4">
+          <svg class="dripping-icing" viewBox="25 380 150 100" preserveAspectRatio="xMidYMid slice">
+            <path fill="#ffe8f0" opacity="0" d="M104.812,113.216c0,3.119-2.164,5.67-4.812,5.67c-2.646,0-4.812-2.551-4.812-5.67c0-5.594,0-16.782,0-22.375c0-5.143,0-15.427,0-20.568c0-7.333,0-21.998,0-29.33c0-5.523,0-16.569,0-22.092c0-3.295,0-9.885,0-13.181C95.188,2.551,97.353,0,100,0c2.648,0,4.812,2.551,4.812,5.669c0,3.248,0,9.743,0,12.991c0,5.428,0,16.284,0,21.711c0,7.618,0,22.854,0,30.472c0,4.952,0,14.854,0,19.807C104.812,96.292,104.812,107.576,104.812,113.216z">
+              <animate attributeName="opacity" from="0" to="1" begin="1.5s" dur="0.3s" fill="freeze" />
+              <animate
+                id="crema"
+                attributeName="d"
+                calcMode="spline"
+                keySplines="0 0 1 1; 0 0 1 1; 0 0 1 1; 0.25 0 1 1; 0 0 1 1; 0 0 0.58 1"
+                begin="3.5s"
+                dur="2.5s"
+                fill="freeze"
+                values="
+                M104.812,113.216c0,3.119-2.164,5.67-4.812,5.67c-2.646,0-4.812-2.551-4.812-5.67c0-5.594,0-16.782,0-22.375c0-5.143,0-15.427,0-20.568c0-7.333,0-21.998,0-29.33c0-5.523,0-16.569,0-22.092c0-3.295,0-9.885,0-13.181C95.188,2.551,97.353,0,100,0c2.648,0,4.812,2.551,4.812,5.669c0,3.248,0,9.743,0,12.991c0,5.428,0,16.284,0,21.711c0,7.618,0,22.854,0,30.472c0,4.952,0,14.854,0,19.807C104.812,96.292,104.812,107.576,104.812,113.216z;
+                M104.812,405.897c0,3.119-2.164,5.67-4.812,5.67c-2.646,0-4.812-2.551-4.812-5.67c0-5.594,0-16.782,0-22.376c0-5.143,0-15.426,0-20.568c0-7.332,0-21.997,0-29.33c0-5.522,0-16.568,0-22.092c0-3.295,0-9.885,0-13.181c0-3.118,2.165-5.669,4.812-5.669c2.648,0,4.812,2.551,4.812,5.669c0,3.247,0,9.743,0,12.991c0,5.428,0,16.283,0,21.711c0,7.618,0,22.854,0,30.473c0,4.951,0,14.854,0,19.807C104.812,388.972,104.812,400.256,104.812,405.897z;
+                M111.873,411.567c-3.119,0-9.226,0-11.874,0c-2.646,0-7.748,0-10.867,0c-7.086,0-12.698,0-18.292,0c-6.592,0-12.871,7.371-19.166,3.008c-10.043-6.961-7.776-10.169,2.991-17.745c12.61-8.873,27.713,1.994,25.919-7.531c-2.589-13.742,11.008-14.513,11.365-17.789c0.441-4.051,4.235-11.107,8.051-8.175c3.113,2.393,1.007,8.008,0,13.159c-1.871,9.569,8.058,2.113,9.494,14.155c2.592,21.732,21.184-0.675,29.309,7.976c5.216,5.553,18.413,5.552,15.426,12.942c-3.131,7.745-15.825-4.369-23.8,2.903C126.261,418.271,118.301,411.567,111.873,411.567z;
+                M111.873,411.567c-3.119,0-9.226,0-11.874,0c-2.646,0-9.734,4.069-12.853,4.069c-7.086,0-10.712-4.069-16.306-4.069c-6.592,0-12.12,6.013-19.166,3.008c-7.053-3.008-7.458,2.026-18.659,1.165c-6.832-0.525-7.522-3.034-7.533-6.265c-0.037-10.336,22.073-2.452,36.613-2.628c10.234-0.124,19.856-1.439,37.905-2.102c16.642-0.61,32.699,1.552,46.009,1.927c12.438,0.351,29.663-8.99,31.532,3.315c0.773,5.093-5.605,3.342-11.211,9.579c-5.093,5.667-7.59-4.605-12.965-3.832c-8.269,1.189-14.962-8.537-22.937-1.265C126.261,418.271,118.301,411.567,111.873,411.567z;
+                M110.946,413.652c-2.904-1.137-8.405-2.748-12.446-0.97c-6.099,2.685-7.273,10.358-13.253,8.242c-7.843-2.775-8.953-5.008-14.546-5.01c-24.653-0.011-4.849,26.507-18.264,26.507c-12.377,0,5.791-33.537-19.422-26.682c-7.703,2.095-9.806-0.942-9.817-4.173c-0.037-10.336,24.357-4.544,38.897-4.72c10.234-0.124,19.856-1.439,37.905-2.102c16.642-0.61,32.699,1.552,46.009,1.927c12.438,0.351,28.973-8.865,31.532,3.315c1.449,6.896,0.318,15.624-3.874,15.624c-7.619,0-1.788-15.192-19.243-7.111c-7.581,3.51-15.963-9.738-26.669,1.066C120.644,426.744,118.381,416.561,110.946,413.652z;
+                M111.547,413.9c-2.969-0.956-8.775-0.949-13.167-0.5c-14.667,1.5-8.325,16.508-14.667,16.666c-6.667,0.166-0.167-13.5-13.013-14.151c-30.471-1.545-5.572,46.651-18.987,46.651c-12.377,0,10.333-50.166-18.667-44.5c-7.835,1.531-9.537-1.417-9.548-4.647c-0.037-10.336,23.675-5.177,38.215-5.353c10.234-0.124,20.618-1.671,38.667-2.333c16.642-0.61,32.023,1.458,45.333,1.833c12.438,0.351,33.819-8.431,33.199,4.001c-0.532,10.666,0.414,26.166-5.245,25.833c-7.606-0.447-2.954-31.5-19.243-18.899c-7.985,6.177-17.658-5.969-27.377,5.732C118.88,434.066,121.38,417.067,111.547,413.9z;
+                M111.547,415.233c-6.667-0.834-9.667,4.667-13.833,3.333c-19.649-6.291-8.158,22.176-14.5,22.334c-6.667,0.166,2.833-18-13.333-22.167c-29.544-7.615-9.667,43.833-20.167,43.833c-10.333,0,8.004-55.006-16.833-39c-7.5,4.833-9.508-3.78-9.299-7.004c0.799-12.329,23.592-7.153,38.132-7.329c10.234-0.124,20.238-1.505,38.287-2.167c16.642-0.61,32.903,1.125,46.213,1.5c12.438,0.351,35.058-5.579,31.863,6.451c-5.532,20.833,1.25,28.216-4.409,27.883c-7.606-0.447-6.058-37.895-20.62-23.333c-10.167,10.166-15.972-0.747-25,12C119.547,443.568,121.798,416.515,111.547,415.233z
+              "
+              />
+            </path>
+          </svg>
+        </div>
+
+        <div class="candles">
+          <svg class="candle-svg" viewBox="0 -15 40 135" xmlns="http://www.w3.org/2000/svg">
+            <!-- Knot -->
+            <line x1="20" y1="8" x2="20" y2="15" stroke="#2c2416" stroke-width="1.5" stroke-linecap="round" />
+
+            <!-- Flame glow -->
+            <ellipse cx="20" cy="8" rx="18" ry="22" fill="url(#flameGlow)" opacity="0.6">
+              <animate attributeName="opacity" values="0.5;0.7;0.5" dur="0.3s" repeatCount="indefinite" />
+            </ellipse>
+
+            <!-- Flame -->
+            <g class="flame-group">
+              <ellipse cx="20" cy="6" rx="11" ry="18" fill="url(#flameGradient)">
+                <animate attributeName="ry" values="18;20;17;19;18" dur="0.3s" repeatCount="indefinite" />
+                <animate attributeName="rx" values="11;10;12;10.5;11" dur="0.3s" repeatCount="indefinite" />
+              </ellipse>
+              <ellipse cx="20" cy="8" rx="7" ry="12" fill="url(#flameInner)">
+                <animate attributeName="ry" values="12;13;11;12.5;12" dur="0.3s" repeatCount="indefinite" />
+              </ellipse>
+            </g>
+
+            <!-- Candle body -->
+            <rect x="12" y="15" width="16" height="80" rx="3" fill="url(#candleGradient)" />
+            <ellipse cx="20" cy="15" rx="8" ry="3" fill="#ff8fab" />
+
+            <!-- Wax drips -->
+            <path d="M 15 25 Q 14 30 14 35 Q 14 38 16 38 Q 18 38 18 35 Q 18 30 17 25" fill="#ff6b9d" opacity="0.7" />
+            <path d="M 24 35 Q 23 40 23 45 Q 23 48 25 48 Q 27 48 27 45 Q 27 40 26 35" fill="#ff6b9d" opacity="0.7" />
+
+            <!-- Gradients -->
+            <defs>
+              <radialGradient id="flameGlow">
+                <stop offset="0%" style="stop-color: #ffed4e; stop-opacity: 0.8" />
+                <stop offset="50%" style="stop-color: #ff8c00; stop-opacity: 0.3" />
+                <stop offset="100%" style="stop-color: #ff4500; stop-opacity: 0" />
+              </radialGradient>
+              <linearGradient id="flameGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" style="stop-color: #ffd700; stop-opacity: 1" />
+                <stop offset="50%" style="stop-color: #ff8c00; stop-opacity: 1" />
+                <stop offset="100%" style="stop-color: #ff4500; stop-opacity: 0.9" />
+              </linearGradient>
+              <linearGradient id="flameInner" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" style="stop-color: #ffed4e; stop-opacity: 1" />
+                <stop offset="100%" style="stop-color: #ffaa00; stop-opacity: 0.8" />
+              </linearGradient>
+              <linearGradient id="candleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color: #ff6b9d; stop-opacity: 1" />
+                <stop offset="50%" style="stop-color: #ff8fab; stop-opacity: 1" />
+                <stop offset="100%" style="stop-color: #ff6b9d; stop-opacity: 1" />
+              </linearGradient>
+            </defs>
+          </svg>
+
+          <svg class="candle-svg" viewBox="0 -15 40 135" xmlns="http://www.w3.org/2000/svg">
+            <line x1="20" y1="8" x2="20" y2="15" stroke="#2c2416" stroke-width="1.5" stroke-linecap="round" />
+
+            <!-- Flame glow -->
+            <ellipse cx="20" cy="8" rx="18" ry="22" fill="url(#flameGlow2)" opacity="0.6">
+              <animate attributeName="opacity" values="0.5;0.7;0.5" dur="0.35s" repeatCount="indefinite" />
+            </ellipse>
+
+            <g class="flame-group">
+              <ellipse cx="20" cy="6" rx="11" ry="18" fill="url(#flameGradient2)">
+                <animate attributeName="ry" values="18;19;17;20;18" dur="0.35s" repeatCount="indefinite" />
+                <animate attributeName="rx" values="11;10.5;12;10;11" dur="0.35s" repeatCount="indefinite" />
+              </ellipse>
+              <ellipse cx="20" cy="8" rx="7" ry="12" fill="url(#flameInner2)">
+                <animate attributeName="ry" values="12;12.5;11;13;12" dur="0.35s" repeatCount="indefinite" />
+              </ellipse>
+            </g>
+            <rect x="12" y="15" width="16" height="80" rx="3" fill="url(#candleGradient2)" />
+            <ellipse cx="20" cy="15" rx="8" ry="3" fill="#ff8fab" />
+            <path d="M 18 30 Q 17 35 17 40 Q 17 43 19 43 Q 21 43 21 40 Q 21 35 20 30" fill="#ff6b9d" opacity="0.7" />
+            <defs>
+              <radialGradient id="flameGlow2">
+                <stop offset="0%" style="stop-color: #ffed4e; stop-opacity: 0.8" />
+                <stop offset="50%" style="stop-color: #ff8c00; stop-opacity: 0.3" />
+                <stop offset="100%" style="stop-color: #ff4500; stop-opacity: 0" />
+              </radialGradient>
+              <linearGradient id="flameGradient2" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" style="stop-color: #ffd700; stop-opacity: 1" />
+                <stop offset="50%" style="stop-color: #ff8c00; stop-opacity: 1" />
+                <stop offset="100%" style="stop-color: #ff4500; stop-opacity: 0.9" />
+              </linearGradient>
+              <linearGradient id="flameInner2" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" style="stop-color: #ffed4e; stop-opacity: 1" />
+                <stop offset="100%" style="stop-color: #ffaa00; stop-opacity: 0.8" />
+              </linearGradient>
+              <linearGradient id="candleGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color: #ff6b9d; stop-opacity: 1" />
+                <stop offset="50%" style="stop-color: #ff8fab; stop-opacity: 1" />
+                <stop offset="100%" style="stop-color: #ff6b9d; stop-opacity: 1" />
+              </linearGradient>
+            </defs>
+          </svg>
+
+          <svg class="candle-svg" viewBox="0 -15 40 135" xmlns="http://www.w3.org/2000/svg">
+            <line x1="20" y1="8" x2="20" y2="15" stroke="#2c2416" stroke-width="1.5" stroke-linecap="round" />
+
+            <!-- Flame glow -->
+            <ellipse cx="20" cy="8" rx="18" ry="22" fill="url(#flameGlow3)" opacity="0.6">
+              <animate attributeName="opacity" values="0.5;0.7;0.5" dur="0.28s" repeatCount="indefinite" />
+            </ellipse>
+
+            <g class="flame-group">
+              <ellipse cx="20" cy="6" rx="11" ry="18" fill="url(#flameGradient3)">
+                <animate attributeName="ry" values="18;20;18;19;18" dur="0.28s" repeatCount="indefinite" />
+                <animate attributeName="rx" values="11;10;11.5;10.5;11" dur="0.28s" repeatCount="indefinite" />
+              </ellipse>
+              <ellipse cx="20" cy="8" rx="7" ry="12" fill="url(#flameInner3)">
+                <animate attributeName="ry" values="12;13;12;12.5;12" dur="0.28s" repeatCount="indefinite" />
+              </ellipse>
+            </g>
+            <rect x="12" y="15" width="16" height="80" rx="3" fill="url(#candleGradient3)" />
+            <ellipse cx="20" cy="15" rx="8" ry="3" fill="#ff8fab" />
+            <path d="M 22 28 Q 21 33 21 38 Q 21 41 23 41 Q 25 41 25 38 Q 25 33 24 28" fill="#ff6b9d" opacity="0.7" />
+            <path d="M 16 40 Q 15 45 15 50 Q 15 53 17 53 Q 19 53 19 50 Q 19 45 18 40" fill="#ff6b9d" opacity="0.7" />
+            <defs>
+              <radialGradient id="flameGlow3">
+                <stop offset="0%" style="stop-color: #ffed4e; stop-opacity: 0.8" />
+                <stop offset="50%" style="stop-color: #ff8c00; stop-opacity: 0.3" />
+                <stop offset="100%" style="stop-color: #ff4500; stop-opacity: 0" />
+              </radialGradient>
+              <linearGradient id="flameGradient3" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" style="stop-color: #ffd700; stop-opacity: 1" />
+                <stop offset="50%" style="stop-color: #ff8c00; stop-opacity: 1" />
+                <stop offset="100%" style="stop-color: #ff4500; stop-opacity: 0.9" />
+              </linearGradient>
+              <linearGradient id="flameInner3" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" style="stop-color: #ffed4e; stop-opacity: 1" />
+                <stop offset="100%" style="stop-color: #ffaa00; stop-opacity: 0.8" />
+              </linearGradient>
+              <linearGradient id="candleGradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color: #ff6b9d; stop-opacity: 1" />
+                <stop offset="50%" style="stop-color: #ff8fab; stop-opacity: 1" />
+                <stop offset="100%" style="stop-color: #ff6b9d; stop-opacity: 1" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <h1 class="message">Wszystkiego najlepszego!</h1>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
