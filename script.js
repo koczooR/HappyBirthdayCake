@@ -102,7 +102,7 @@ function initBlowOutCandles() {
   const candles = document.querySelectorAll(".candle-svg");
   const overlay = document.querySelector(".darkness-overlay");
 
-  const threshold = 0.2;
+  const threshold = 0.1; // Niższy threshold dla telefonów
   const cooldown = 3000;
   let lastBlowTime = 0;
   let audioContext = null;
@@ -116,11 +116,17 @@ function initBlowOutCandles() {
         audio: {
           echoCancellation: true,
           noiseSuppression: true,
-          autoGainControl: false,
+          autoGainControl: true, // Włączone dla lepszej kompatybilności z mobile
         },
       })
       .then((stream) => {
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        // Wznów AudioContext na mobile (wymóg dla iOS/Android)
+        if (audioContext.state === 'suspended') {
+          audioContext.resume();
+        }
+
         const analyser = audioContext.createAnalyser();
         analyser.fftSize = 2048;
         analyser.smoothingTimeConstant = 0.8;
@@ -148,7 +154,9 @@ function initBlowOutCandles() {
           const rms = Math.sqrt(sum / dataArray.length);
 
           const now = Date.now();
-          if ((rms > threshold || max > 0.5) && now - lastBlowTime > cooldown) {
+          // Niższy próg dla max (0.3 zamiast 0.5) dla lepszej czułości na mobile
+          if ((rms > threshold || max > 0.3) && now - lastBlowTime > cooldown) {
+            console.log("Wykryto dmuchnięcie! RMS:", rms, "MAX:", max);
             lastBlowTime = now;
             blowOutCandles();
           }
@@ -159,7 +167,8 @@ function initBlowOutCandles() {
         detectBlow();
       })
       .catch((err) => {
-        console.warn("Brak dostępu do mikrofonu:", err);
+        console.error("Błąd dostępu do mikrofonu:", err);
+        alert("Nie można uzyskać dostępu do mikrofonu. Sprawdź uprawnienia w przeglądarce.");
       });
   }
 
