@@ -168,14 +168,10 @@ function initBlowOutCandles() {
       })
       .catch((err) => {
         console.error("Błąd dostępu do mikrofonu:", err);
-        alert("Nie można uzyskać dostępu do mikrofonu. Sprawdź uprawnienia w przeglądarce.");
       });
   }
 
-  const startEvents = ["click", "touchstart", "mousedown"];
-  startEvents.forEach((event) => {
-    document.addEventListener(event, startAudioDetection, { once: true });
-  });
+  startAudioDetection();
 
   function blowOutCandles() {
     candles.forEach((candle) => candle.classList.remove("lit"));
