@@ -28,8 +28,11 @@ function initLighterCursor() {
 function initCandleLighting() {
   const candles = document.querySelectorAll(".candle-svg");
   const overlay = document.querySelector(".darkness-overlay");
-  let litCount = 0;
   const totalCandles = candles.length;
+
+  if (!window.candleLightingData) {
+    window.candleLightingData = { litCount: 0 };
+  }
 
   overlay.addEventListener("mousemove", (e) => {
     const rect = e.target.getBoundingClientRect();
@@ -45,10 +48,10 @@ function initCandleLighting() {
 
       if (distance < 30 && !candle.classList.contains("lit")) {
         candle.classList.add("lit");
-        litCount++;
+        window.candleLightingData.litCount++;
         updateOverlayOpacity();
 
-        if (litCount === totalCandles) {
+        if (window.candleLightingData.litCount === totalCandles) {
           document.body.style.cursor = "auto";
           const lighterCursor = document.querySelector(".lighter-cursor");
           lighterCursor.style.opacity = "0";
@@ -75,6 +78,13 @@ function initCandleLighting() {
           setTimeout(() => {
             const message = document.querySelector(".message");
             message.classList.add("show");
+
+            if (window.microphonePermissionGranted) {
+              const blowInstruction = document.querySelector(".blow-instruction");
+              if (blowInstruction) {
+                blowInstruction.classList.add("show");
+              }
+            }
           }, 500);
         }
       }
@@ -82,7 +92,7 @@ function initCandleLighting() {
   });
 
   function updateOverlayOpacity() {
-    const progress = litCount / totalCandles;
+    const progress = window.candleLightingData.litCount / totalCandles;
     const opacity = 1 - progress;
     overlay.style.setProperty("--overlay-opacity", opacity);
   }
@@ -92,47 +102,97 @@ function initBlowOutCandles() {
   const candles = document.querySelectorAll(".candle-svg");
   const overlay = document.querySelector(".darkness-overlay");
 
-  const threshold = 0.25;
+  const threshold = 0.2;
   const cooldown = 3000;
   let lastBlowTime = 0;
+  let audioContext = null;
+  let isListening = false;
 
-  navigator.mediaDevices
-    .getUserMedia({ audio: true })
-    .then((stream) => {
-      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      const analyser = audioContext.createAnalyser();
-      const source = audioContext.createMediaStreamSource(stream);
-      const data = new Uint8Array(analyser.fftSize);
+  function startAudioDetection() {
+    if (isListening) return;
 
-      source.connect(analyser);
+    navigator.mediaDevices
+      .getUserMedia({
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          autoGainControl: false,
+        },
+      })
+      .then((stream) => {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const analyser = audioContext.createAnalyser();
+        analyser.fftSize = 2048;
+        analyser.smoothingTimeConstant = 0.8;
 
-      function detectBlow() {
-        analyser.getByteTimeDomainData(data);
-        let sum = 0;
-        for (let i = 0; i < data.length; i++) {
-          const value = (data[i] - 128) / 128;
-          sum += value * value;
+        const source = audioContext.createMediaStreamSource(stream);
+        source.connect(analyser);
+
+        const dataArray = new Uint8Array(analyser.frequencyBinCount);
+        isListening = true;
+
+        window.microphonePermissionGranted = true;
+
+        function detectBlow() {
+          if (!isListening) return;
+
+          analyser.getByteTimeDomainData(dataArray);
+
+          let sum = 0;
+          let max = 0;
+          for (let i = 0; i < dataArray.length; i++) {
+            const value = Math.abs((dataArray[i] - 128) / 128);
+            sum += value * value;
+            max = Math.max(max, value);
+          }
+          const rms = Math.sqrt(sum / dataArray.length);
+
+          const now = Date.now();
+          if ((rms > threshold || max > 0.5) && now - lastBlowTime > cooldown) {
+            lastBlowTime = now;
+            blowOutCandles();
+          }
+
+          requestAnimationFrame(detectBlow);
         }
-        const volume = Math.sqrt(sum / data.length);
 
-        const now = Date.now();
-        if (volume > threshold && now - lastBlowTime > cooldown) {
-          lastBlowTime = now;
-          blowOutCandles();
-        }
+        detectBlow();
+      })
+      .catch((err) => {
+        console.warn("Brak dostępu do mikrofonu:", err);
+      });
+  }
 
-        requestAnimationFrame(detectBlow);
-      }
-
-      detectBlow();
-    })
-    .catch((err) => {
-      console.warn("Brak dostępu do mikrofonu:", err);
-    });
+  const startEvents = ["click", "touchstart", "mousedown"];
+  startEvents.forEach((event) => {
+    document.addEventListener(event, startAudioDetection, { once: true });
+  });
 
   function blowOutCandles() {
     candles.forEach((candle) => candle.classList.remove("lit"));
-    overlay.style.setProperty("--overlay-opacity", 0.9);
+
+    overlay.style.setProperty("--overlay-opacity", 1);
+
+    if (window.candleLightingData) {
+      window.candleLightingData.litCount = 0;
+    }
+
+    document.body.style.cursor = "none";
+    const lighterCursor = document.querySelector(".lighter-cursor");
+    if (lighterCursor) {
+      lighterCursor.style.opacity = "1";
+    }
+
+    const blowInstruction = document.querySelector(".blow-instruction");
+    const message = document.querySelector(".message");
+
+    if (blowInstruction) {
+      blowInstruction.classList.remove("show");
+    }
+
+    if (message) {
+      message.classList.remove("show");
+    }
   }
 }
 
