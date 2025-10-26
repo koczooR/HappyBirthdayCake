@@ -102,8 +102,11 @@ function initBlowOutCandles() {
   const candles = document.querySelectorAll(".candle-svg");
   const overlay = document.querySelector(".darkness-overlay");
 
-  const threshold = 0.1; // Niższy threshold dla telefonów
-  const cooldown = 3000;
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.matchMedia("(pointer: coarse)").matches;
+
+  const threshold = isMobile ? 0.02 : 0.2;
+  const maxThreshold = isMobile ? 0.15 : 0.5;
+  const cooldown = 500;
   let lastBlowTime = 0;
   let audioContext = null;
   let isListening = false;
@@ -116,14 +119,13 @@ function initBlowOutCandles() {
         audio: {
           echoCancellation: true,
           noiseSuppression: true,
-          autoGainControl: true, // Włączone dla lepszej kompatybilności z mobile
+          autoGainControl: true,
         },
       })
       .then((stream) => {
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-        // Wznów AudioContext na mobile (wymóg dla iOS/Android)
-        if (audioContext.state === 'suspended') {
+        if (audioContext.state === "suspended") {
           audioContext.resume();
         }
 
@@ -154,9 +156,7 @@ function initBlowOutCandles() {
           const rms = Math.sqrt(sum / dataArray.length);
 
           const now = Date.now();
-          // Niższy próg dla max (0.3 zamiast 0.5) dla lepszej czułości na mobile
-          if ((rms > threshold || max > 0.3) && now - lastBlowTime > cooldown) {
-            console.log("Wykryto dmuchnięcie! RMS:", rms, "MAX:", max);
+          if ((rms > threshold || max > maxThreshold) && now - lastBlowTime > cooldown) {
             lastBlowTime = now;
             blowOutCandles();
           }
